@@ -1,0 +1,64 @@
+<?php
+
+/*
+Plugin Name:  MND Shortcodes
+Version: 1.0
+Description: Create a plugin for inserting a header form to Register if a Paid user.
+Author: Tim Roman
+Author URI: https://www.mexiconewsdaily.com/
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: mndcodes
+*/
+
+
+// Shortcode for Leader form - Desktop
+
+      function leader_subscribe_init() {
+		  
+		 
+		$leakyFormCode = do_shortcode('[leaky_paywall_quick_register level_id="8" fields="email, password" style="inline"]');
+		  
+		$adCode = '<!-- /22864350241/RON/Ron_In_Content_4-->
+<div id="unit-1666901234414" class="tmsads"></div>';
+		  
+		 if(leaky_paywall_has_user_paid()) {
+
+			return $adCode;
+		 
+		 } else {
+			 
+			 return '<div id="leaky_leader_container" style="border-style: solid; border-width: thin; padding: 10px;"><div style="font-size:.8em;text-align: center;" id="leaky_leader_text">Subscribe today! Get full access to the news you need for $4.99/month</div>'.$leakyFormCode.'</div>';
+		 }		 
+    }
+    add_shortcode('leader_subscribe', 'leader_subscribe_init');
+	
+	
+	
+	
+// Shortcode for Leader form - Mobile
+
+      function leader_subscribe_mobile_init() {
+		  
+		 
+		$leakyFormCodeMobile = do_shortcode('[leaky_paywall_quick_register level_id="8" fields="email, password" style="inline"]');
+		  
+		$adCodeMobile = '';
+		  
+		 if(leaky_paywall_has_user_paid()) {
+
+			return $adCodeMobile;
+		 
+		 } else {
+			 
+			 return '<div id="leaky_leader_container_mobile" style="border-style: solid; border-width: thin; padding: 10px;"><div style="font-size:.8em;text-align: center;" id="leaky_leader_text">Subscribe today! Get full access to the news you need for $4.99/month</div>'.$leakyFormCodeMobile.'</div>';
+		 }		 
+    }
+    add_shortcode('leader_subscribe_mobile', 'leader_subscribe_mobile_init');	
+	
+
+
+
+
+
+?>
